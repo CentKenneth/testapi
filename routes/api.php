@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Authorized Routes
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::prefix('authorized')->group(function () {
+        // User
+        Route::get('auth', [UserController::class, 'authDetails']);
+    });
 });
