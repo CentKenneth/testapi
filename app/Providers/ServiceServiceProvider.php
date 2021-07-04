@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\UserServices;
+use App\Services\TransactionServices;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -16,6 +17,9 @@ class ServiceServiceProvider extends ServiceProvider
     {
         $this->app->singleton('UserServices', function() {
             return new UserServices;
+        });
+        $this->app->singleton('TransactionServices', function() {
+            return new TransactionServices;
         });
     }
 
