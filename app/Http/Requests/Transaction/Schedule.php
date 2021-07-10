@@ -27,6 +27,7 @@ class Schedule extends FormRequest
             'user_id' => 'required',
             'sendto' => 'required',
             'email' => 'required',
+            'name' => 'required',
             'phone' => 'required',
             'schedule_date' => 'required',
             'schedule_time' => 'required',

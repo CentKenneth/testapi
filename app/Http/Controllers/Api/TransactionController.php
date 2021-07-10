@@ -16,9 +16,17 @@ class TransactionController extends Controller
             $data = collect($request->validated())
             ->toArray();
 
-            
-
             return resolve('TransactionServices')->store($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getTransactionByDoctorsEmail($email)
+    {
+        try {
+            
+            return resolve('TransactionServices')->getTransactionByDoctorsEmail($email);
         } catch (Exception $exception) {
             throw $exception;
         }

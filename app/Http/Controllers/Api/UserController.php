@@ -52,4 +52,13 @@ class UserController extends Controller
             throw $exception;
         }
     }
+
+    public function getDoctorEmail()
+    {
+        try {
+            return resolve('UserServices')->getDoctorEmail();
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
 }

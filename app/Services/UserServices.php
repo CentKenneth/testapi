@@ -42,4 +42,16 @@ class UserServices
         }
     }
 
+    public function getDoctorEmail()
+    {
+        try {
+            
+            $user = resolve('User')->getModel()->where('role', 'doctor')->get();
+            return $user;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
 }

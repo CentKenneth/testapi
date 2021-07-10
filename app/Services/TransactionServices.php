@@ -18,4 +18,16 @@ class TransactionServices
         }
     }
 
+    public function getTransactionByDoctorsEmail($email)
+    {
+        try {
+            
+            $transaction = resolve('Transaction')->getModel()->where('sendto', $email)->get();
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
 }
