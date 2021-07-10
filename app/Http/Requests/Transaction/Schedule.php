@@ -28,8 +28,8 @@ class Schedule extends FormRequest
             'sendto' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'date' => 'required',
-            'time' => 'required',
+            'schedule_date' => 'required',
+            'schedule_time' => 'required',
             'sysmptoms' => 'required'
         ];
     }

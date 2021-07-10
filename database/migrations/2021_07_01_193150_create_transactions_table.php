@@ -23,13 +23,9 @@ class CreateTransactionsTable extends Migration
             $table->string('sendto')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('date')->nullable();
-            $table->string('time')->nullable();
-            $table->string('sysmptoms')->nullable();
-            
-
-
-            
+            $table->string('schedule_date')->nullable();
+            $table->string('schedule_time')->nullable();
+            $table->string('sysmptoms')->nullable(); 
             $table->timestamps();
         });
     }

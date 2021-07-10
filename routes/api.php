@@ -19,9 +19,10 @@ use App\Http\Controllers\Api\TransactionController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 // guest user
 Route::post('register', [UserController::class, 'registerUser']);
+// guest doctor
+Route::post('register-doctor', [UserController::class, 'registerDoctor']);
 // transaction
 
 

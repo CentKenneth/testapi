@@ -30,4 +30,16 @@ class UserServices
         }
     }
 
+    public function storeDoctor($data)
+    {
+        try {
+            
+            $user = resolve('User')->store(collect($data)->toArray());
+            return $user;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
 }
