@@ -59,6 +59,8 @@ class TransactionController extends Controller
         }
     }
 
+  
+
     public function getTransactionByPatientsEmail($email)
     {
         try {
@@ -68,4 +70,26 @@ class TransactionController extends Controller
             throw $exception;
         }
     }
+
+    public function getAppointmentByPatientsEmail($email)
+    {
+        try {
+            
+            return resolve('TransactionServices')->getAppointmentByPatientsEmail($email);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getPrescriptionByDoctorsEmail($email)
+    {
+        try {
+            
+            return resolve('TransactionServices')->getPrescriptionByDoctorsEmail($email);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+
 }

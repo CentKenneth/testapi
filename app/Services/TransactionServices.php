@@ -46,7 +46,31 @@ class TransactionServices
     {
         try {
             
-            $transaction = resolve('Transaction')->getModel()->where('sendto', $email)->get();
+            $transaction = resolve('Transaction')->getModel()->where('sendto', $email)->where('transactiontype', 'Schedule')->get();
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getAppointmentByPatientsEmail($email)
+    {
+        try {
+            
+            $transaction = resolve('Transaction')->getModel()->where('sendto', $email)->where('transactiontype', 'Appointment')->get();
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getPrescriptionByDoctorsEmail($email)
+    {
+        try {
+            
+            $transaction = resolve('Transaction')->getModel()->where('sendto', $email)->where('transactiontype', 'Prescription')->get();
             return $transaction;
 
         } catch (Exception $exception) {
