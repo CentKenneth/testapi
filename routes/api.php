@@ -32,9 +32,13 @@ Route::group(['middleware' => ['auth:api']], function () {
         // User
         Route::get('auth', [UserController::class, 'authDetails']);
         Route::get('doctor-email', [UserController::class, 'getDoctorEmail']);
+        Route::get('patient-email', [UserController::class, 'getPatientEmail']);
 
         // Transaction
         Route::post('schedule', [TransactionController::class, 'scheduleTransaction']);
+        Route::post('schedule-appointment', [TransactionController::class, 'appointmentTransaction']);
+        Route::post('prescription-transaction', [TransactionController::class, 'prescriptionTransaction']);
         Route::get('transaction-by-doctors-email/{email}', [TransactionController::class, 'getTransactionByDoctorsEmail']);
+        Route::get('transaction-by-patients-email/{email}', [TransactionController::class, 'getTransactionByPatientsEmail']);
     });
 });

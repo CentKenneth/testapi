@@ -19,9 +19,6 @@ class ServiceServiceProvider extends ServiceProvider
         $this->app->singleton('UserServices', function() {
             return new UserServices;
         });
-        $this->app->singleton('DoctorServices', function() {
-            return new DoctorServices;
-        });
         $this->app->singleton('TransactionServices', function() {
             return new TransactionServices;
         });

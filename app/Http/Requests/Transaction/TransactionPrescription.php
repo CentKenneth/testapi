@@ -4,7 +4,7 @@ namespace App\Http\Requests\Transaction;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Schedule extends FormRequest
+class TransactionPrescription extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,12 +28,10 @@ class Schedule extends FormRequest
             'sendto' => 'required',
             'email' => 'required',
             'name' => 'required',
-            'phone' => 'required',
-            'schedule_date' => 'required',
-            'schedule_time' => 'required',
-            'sysmptoms' => 'required',
+            'message' => 'required',
+            'prescription' => 'required',
+            'price' => 'required',
             'transactiontype' => 'required'
-            
         ];
     }
 }

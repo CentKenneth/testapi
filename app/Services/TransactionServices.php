@@ -18,6 +18,30 @@ class TransactionServices
         }
     }
 
+    public function storeAppointment($data)
+    {
+        try {
+            
+            $transaction = resolve('Transaction')->store(collect($data)->toArray());
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function storePrescription($data)
+    {
+        try {
+            
+            $transaction = resolve('Transaction')->store(collect($data)->toArray());
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getTransactionByDoctorsEmail($email)
     {
         try {

@@ -35,7 +35,7 @@ class UserController extends Controller
             throw $exception;
         }
     }
-
+    
     public function registerDoctor(registerDoctor $request)
     {
         try {
@@ -57,6 +57,15 @@ class UserController extends Controller
     {
         try {
             return resolve('UserServices')->getDoctorEmail();
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+     public function getPatientEmail()
+    {
+        try {
+            return resolve('UserServices')->getPatientEmail();
         } catch (Exception $exception) {
             throw $exception;
         }
