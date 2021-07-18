@@ -47,5 +47,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('schedule-doctor-get', [DoctorController::class, 'getScheduleDoctor']);
         Route::post('schedule-doctor-delete/{id}', [DoctorController::class, 'deleteScheduleDoctor']);
         Route::post('schedule-doctor-update', [DoctorController::class, 'updateScheduleDoctor']);
+        
+        Route::get('appointment-by-patients-email/{email}', [TransactionController::class, 'getAppointmentByPatientsEmail']);
+        Route::get('prescription-by-doctors-email/{email}', [TransactionController::class, 'getPrescriptionByDoctorsEmail']);
     });
 });
