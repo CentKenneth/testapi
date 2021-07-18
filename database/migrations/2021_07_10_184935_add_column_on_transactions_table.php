@@ -28,9 +28,9 @@ class AddColumnOnTransactionsTable extends Migration
     public function down()
     {
         Schema::table('transactions', function(Blueprint $table) {
-            $table->dropColumn('degreelevel');
-            $table->dropColumn('degreefield');
-            $table->dropColumn('clinicname');
+            $table->dropColumn('transactiontype');
+            $table->dropColumn('status');
+            $table->dropColumn('address');
         });
     }
 }

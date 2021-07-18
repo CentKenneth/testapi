@@ -28,9 +28,9 @@ class AddColumnOnUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->dropColumn('degreelevel');
-            $table->dropColumn('degreefield');
             $table->dropColumn('clinicname');
+            $table->dropColumn('degreefield');
+            $table->dropColumn('degreelevel');
         });
     }
 }

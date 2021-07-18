@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,11 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('prescription-transaction', [TransactionController::class, 'prescriptionTransaction']);
         Route::get('transaction-by-doctors-email/{email}', [TransactionController::class, 'getTransactionByDoctorsEmail']);
         Route::get('transaction-by-patients-email/{email}', [TransactionController::class, 'getTransactionByPatientsEmail']);
+
+        // Doctor Schedule
+        Route::post('schedule-doctor-create', [DoctorController::class, 'createScheduleDoctor']);
+        Route::get('schedule-doctor-get', [DoctorController::class, 'getScheduleDoctor']);
+        Route::post('schedule-doctor-delete/{id}', [DoctorController::class, 'deleteScheduleDoctor']);
+        Route::post('schedule-doctor-update', [DoctorController::class, 'updateScheduleDoctor']);
     });
 });

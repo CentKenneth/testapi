@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\UserServices;
 use App\Services\DoctorServices;
 use App\Services\TransactionServices;
+use App\Services\ScheduleServices;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -21,6 +22,9 @@ class ServiceServiceProvider extends ServiceProvider
         });
         $this->app->singleton('TransactionServices', function() {
             return new TransactionServices;
+        });
+        $this->app->singleton('ScheduleServices', function() {
+            return new ScheduleServices;
         });
     }
 
