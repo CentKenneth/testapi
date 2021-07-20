@@ -24,7 +24,7 @@ class ScheduleServices
             
             $transaction = resolve('Schedule')->getModel()
                         ->whereDate('start','>=', $data['start'])
-                        ->whereDate('end', '<=', $data['end'])
+                        ->whereDate('start', '<=', $data['end'])
                         ->where('user_id', $data['user_id'])
                         ->get();
 

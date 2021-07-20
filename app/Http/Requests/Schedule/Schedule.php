@@ -25,7 +25,7 @@ class Schedule extends FormRequest
     {
         return [
             'start' => 'required',
-            'end' => 'required',
+            'end' => 'nullable',
             'name' => 'required',
             'user_id' => 'required',
         ];
