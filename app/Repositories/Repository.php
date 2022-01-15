@@ -56,12 +56,29 @@ class Repository implements RepositoryInterface
                     $q->where('name', $data['category']);
                 });
             })
+            // Determine if the request has group by
+            ->when(ArrayHelper::isset($data, 'group_by'), function ($query) use ($data) {
+                $query->groupBy($data['group_by']);
+            })
+
+            // filter by user id
+            ->when(ArrayHelper::isset($data, 'patient_id'), function ($q) use ($data) {
+                $q->where('patient_id', $data['patient_id']);
+            })
+
+            // filter by doctor id
+            ->when(ArrayHelper::isset($data, 'doctor_id'), function ($q) use ($data) {
+                $q->where('doctor_id', $data['doctor_id']);
+            })
+
             // Determine if the request has sort_by
             ->when(ArrayHelper::isset($data, 'sort_by'), function ($query) use ($data) {
                 $query->orderBy($data['sort_by'], $data['sort_desc'] ? 'desc' : 'asc');
             }, function ($query) {
                 $query->latest();
             });
+
+            
 
             return $items;
         } catch (\Exception $exception) {

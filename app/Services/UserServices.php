@@ -66,4 +66,17 @@ class UserServices
         }
     }
 
+    public function updateUser($data, $id)
+    {
+        try {
+
+            $user = resolve('User')->update($data, $id);
+
+            return $user;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
 }

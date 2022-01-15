@@ -3,6 +3,8 @@
 namespace App\Services;
 use App\Helpers\TransformerHelper;
 use App\Transformers\ScheduleTransformer;
+use App\Transformers\UserTransformer;
+use Carbon\Carbon;
 
 class ScheduleServices
 {
@@ -55,6 +57,32 @@ class ScheduleServices
             $transaction = resolve('Schedule')->update($data, $id);
 
             return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getDoctorBySpecialization($name)
+    {
+        try {
+            
+            $doctor = resolve('User')->getModel()->where('degreefield', $name)->get();
+
+            return $doctor;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getDoctorScheduleById($id)
+    {
+        try {
+
+            $schedule = resolve('Schedule')->getModel()->where('user_id', $id)->whereBetween('start', [Carbon::now(), Carbon::now()->endOfWeek()])->get();
+
+            return $schedule;
 
         } catch (Exception $exception) {
             throw $exception;

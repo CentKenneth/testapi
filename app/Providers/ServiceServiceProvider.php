@@ -6,6 +6,7 @@ use App\Services\UserServices;
 use App\Services\DoctorServices;
 use App\Services\TransactionServices;
 use App\Services\ScheduleServices;
+use App\Services\PatientServices;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -25,6 +26,9 @@ class ServiceServiceProvider extends ServiceProvider
         });
         $this->app->singleton('ScheduleServices', function() {
             return new ScheduleServices;
+        });
+        $this->app->singleton('PatientServices', function() {
+            return new PatientServices;
         });
     }
 

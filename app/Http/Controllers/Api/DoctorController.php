@@ -53,4 +53,20 @@ class DoctorController extends Controller
             throw $exception;
         }
     }
+
+    public function getDoctorBySpecialization($name) {
+        try {
+            return resolve('ScheduleServices')->getDoctorBySpecialization($name);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getDoctorScheduleById($id) {
+        try {
+            return resolve('ScheduleServices')->getDoctorScheduleById($id);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
 }
