@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         // Doctor chats
         Route::post('get-doctor-chats', [PatientController::class, 'getDoctorChats']);
         Route::post('get-doctor-chats-by-patient', [PatientController::class, 'getPatientChatsByPatient']);
+        Route::post('chat-delete/{id}', [DoctorController::class, 'deleteChat']);
 
         // Transaction
         Route::post('schedule', [TransactionController::class, 'scheduleTransaction']);
@@ -64,11 +65,16 @@ Route::group(['middleware' => ['auth:api']], function () {
 
         // Doctor Schedule
         Route::post('schedule-doctor-create', [DoctorController::class, 'createScheduleDoctor']);
+        Route::post('schedule-doctor-f-t-f-create', [DoctorController::class, 'createScheduleDoctorFtoF']);
         Route::get('schedule-doctor-get', [DoctorController::class, 'getScheduleDoctor']);
+        Route::get('schedule-doctor-f-to-f-get', [DoctorController::class, 'getScheduleDoctorFtoF']);
         Route::post('schedule-doctor-delete/{id}', [DoctorController::class, 'deleteScheduleDoctor']);
+        Route::post('schedule-doctor-delete-f-t-f/{id}', [DoctorController::class, 'deleteScheduleDoctorFtoF']);
         Route::post('schedule-doctor-update', [DoctorController::class, 'updateScheduleDoctor']);
+        Route::post('schedule-doctor-update-f-t-f', [DoctorController::class, 'updateScheduleDoctorFtoF']);
         Route::get('get-doctor-by-specialization/{name}', [DoctorController::class, 'getDoctorBySpecialization']);
         Route::get('get-doctor-schedule-by-id/{id}', [DoctorController::class, 'getDoctorScheduleById']);
+        Route::get('get-doctor-schedule-by-id-f-t-f/{id}', [DoctorController::class, 'getDoctorScheduleByIdFacetoFace']);
 
         // Apointment
         Route::get('appointment-by-patients-email/{email}', [TransactionController::class, 'getAppointmentByPatientsEmail']);
@@ -79,5 +85,11 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('get-patient-schedule', [PatientController::class, 'getPatientSchedule']);
         Route::post('get-patient-schedule-by-doctor', [PatientController::class, 'getPatientScheduleBydoctor']);
         Route::post('edit-patient-schedule', [PatientController::class, 'editPatientSchedule']);
+
+        // Patient Schedule face to face
+        Route::post('patient-schedule-face', [PatientController::class, 'createPatientScheduleFace']);
+        Route::post('get-patient-schedule-face', [PatientController::class, 'getPatientScheduleFace']);
+        Route::post('get-patient-schedule-by-doctor-face', [PatientController::class, 'getPatientScheduleBydoctorFace']);
+        Route::post('edit-patient-schedule-face', [PatientController::class, 'editPatientScheduleFace']);
     });
 });

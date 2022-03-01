@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Transformers;
-use App\Models\Schedule;
+use App\Models\Faceschedule;
 
 use League\Fractal\TransformerAbstract;
 
-class ScheduleTransformer extends TransformerAbstract
+class ScheduleFTFTransformer extends TransformerAbstract
 {
     /**
      * List of resources to automatically include
@@ -30,7 +30,7 @@ class ScheduleTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Schedule $schedule)
+    public function transform(Faceschedule $schedule)
     {
         return [
             'id' => $schedule->id,

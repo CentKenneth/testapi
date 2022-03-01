@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Helpers\TransformerHelper;
 use App\Transformers\ScheduleTransformer;
+use App\Transformers\ScheduleFTFTransformer;
 use App\Transformers\UserTransformer;
 use Carbon\Carbon;
 
@@ -13,6 +14,18 @@ class ScheduleServices
         try {
             
             $transaction = resolve('Schedule')->store(collect($data)->toArray());
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function storeFtoF($data)
+    {
+        try {
+            
+            $transaction = resolve('Faceschedule')->store(collect($data)->toArray());
             return $transaction;
 
         } catch (Exception $exception) {
@@ -37,6 +50,23 @@ class ScheduleServices
         }
     }
 
+    public function indexFtoF($data)
+    {
+        try {
+            
+            $transaction = resolve('Faceschedule')->getModel()
+                        ->whereDate('start','>=', $data['start'])
+                        ->whereDate('start', '<=', $data['end'])
+                        ->where('user_id', $data['user_id'])
+                        ->get();
+
+            return TransformerHelper::collection($transaction, new ScheduleFTFTransformer, $data);
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function delete($id)
     {
         try {
@@ -50,11 +80,50 @@ class ScheduleServices
         }
     }
 
+    public function deleteChat($id)
+    {
+        try {
+            
+            $transaction = resolve('PatientChat')->destroy($id);
+
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function deleteFtoF($id)
+    {
+        try {
+            
+            $transaction = resolve('Faceschedule')->destroy($id);
+
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function update($data, $id)
     {
         try {
             
             $transaction = resolve('Schedule')->update($data, $id);
+
+            return $transaction;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function updateFtoF($data, $id)
+    {
+        try {
+            
+            $transaction = resolve('Faceschedule')->update($data, $id);
 
             return $transaction;
 
@@ -81,6 +150,19 @@ class ScheduleServices
         try {
 
             $schedule = resolve('Schedule')->getModel()->where('user_id', $id)->whereBetween('start', [Carbon::now(), Carbon::now()->endOfWeek()])->get();
+
+            return $schedule;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getDoctorScheduleByIdFacetoFace($id)
+    {
+        try {
+
+            $schedule = resolve('Faceschedule')->getModel()->where('user_id', $id)->whereBetween('start', [Carbon::now(), Carbon::now()->endOfWeek()])->get();
 
             return $schedule;
 

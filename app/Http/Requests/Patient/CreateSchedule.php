@@ -28,11 +28,11 @@ class CreateSchedule extends FormRequest
             'patient_id' => 'required',
             'schedule_id' => 'required',
             'name' => 'required',
-            'bday' => 'required',
-            'address' => 'required',
-            'weigth' => 'required',
-            'heigth' => 'required',
-            'diagnosis' => 'required',
+            'bday' => 'nullable',
+            'address' => 'nullable',
+            'weigth' => 'nullable',
+            'heigth' => 'nullable',
+            'diagnosis' => 'nullable',
         ];
     }
 }

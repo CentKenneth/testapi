@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Helpers\TransformerHelper;
 use App\Transformers\PatientScheduleTransformer;
+use App\Transformers\PatientScheduleFaceTransformer;
 use App\Transformers\PatientChatsTransformer;
 use App\Transformers\PrescriptionTransformer;
 use Illuminate\Http\UploadedFile;
@@ -18,6 +19,18 @@ class PatientServices
         try {
             
             $patient_schedule = resolve('PatientSchedule')->store(collect($data)->toArray());
+            return $patient_schedule;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function storeFace($data)
+    {
+        try {
+            
+            $patient_schedule = resolve('PatientScheduleFace')->store(collect($data)->toArray());
             return $patient_schedule;
 
         } catch (Exception $exception) {
@@ -43,10 +56,39 @@ class PatientServices
         }
     }
 
+    public function indexFace(array $data)
+    {
+        try {
+            $items = resolve('PatientScheduleFace')->index($data);
+
+            if (ArrayHelper::isset($data, 'page')) {
+                $items = $items
+                ->paginate($data['limit']);
+            } else {
+                $items = $items->get();
+            }
+
+            return TransformerHelper::collection($items, new PatientScheduleFaceTransformer, $data);
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function update(array $data, $id)
     {
         try {
             $items = resolve('PatientSchedule')->update($data, $id);
+
+            return $items;
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function updateFace(array $data, $id)
+    {
+        try {
+            $items = resolve('PatientScheduleFace')->update($data, $id);
 
             return $items;
         } catch (\Exception $exception) {
@@ -176,9 +218,12 @@ class PatientServices
         }
     }
 
-    public function createPrescription($data)
+    public function createPrescription($data, UploadedFile $image = null)
     {
         try {
+
+            $data['signature'] = url('/') . '/uploads/images/' .$image->getClientOriginalName();
+            $image->storeAs('images', $image->getClientOriginalName(), 'public_uploads');
 
             $prescription = resolve('Prescription')->store($data);
 

@@ -21,6 +21,18 @@ class DoctorController extends Controller
         }
     }
 
+    public function createScheduleDoctorFtoF(Schedule $request) {
+        try {
+
+            $data = collect($request->validated())
+            ->toArray();
+
+            return resolve('ScheduleServices')->storeFtoF($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getScheduleDoctor(ScheduleGet $request) {
         try {
 
@@ -33,10 +45,40 @@ class DoctorController extends Controller
         }
     }
 
+    public function getScheduleDoctorFtoF(ScheduleGet $request) {
+        try {
+
+            $data = collect($request->validated())
+            ->toArray();
+
+            return resolve('ScheduleServices')->indexFtoF($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function deleteScheduleDoctor($id) {
         try {
 
             return resolve('ScheduleServices')->delete($id);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function deleteChat($id) {
+        try {
+
+            return resolve('ScheduleServices')->deleteChat($id);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function deleteScheduleDoctorFtoF($id) {
+        try {
+
+            return resolve('ScheduleServices')->deleteFtoF($id);
         } catch (Exception $exception) {
             throw $exception;
         }
@@ -54,6 +96,18 @@ class DoctorController extends Controller
         }
     }
 
+    public function updateScheduleDoctorFtoF(ScheduleUpdate $request) {
+        try {
+
+            $data = collect($request->validated())
+            ->toArray();
+
+            return resolve('ScheduleServices')->updateFtoF($data, $data['id']);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getDoctorBySpecialization($name) {
         try {
             return resolve('ScheduleServices')->getDoctorBySpecialization($name);
@@ -65,6 +119,14 @@ class DoctorController extends Controller
     public function getDoctorScheduleById($id) {
         try {
             return resolve('ScheduleServices')->getDoctorScheduleById($id);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getDoctorScheduleByIdFacetoFace($id) {
+        try {
+            return resolve('ScheduleServices')->getDoctorScheduleByIdFacetoFace($id);
         } catch (Exception $exception) {
             throw $exception;
         }

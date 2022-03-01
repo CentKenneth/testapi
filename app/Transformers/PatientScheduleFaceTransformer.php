@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Transformers;
-use App\Models\PatientSchedule;
+use App\Models\PatientScheduleFace;
 
 use League\Fractal\TransformerAbstract;
 
-class PatientScheduleTransformer extends TransformerAbstract
+class PatientScheduleFaceTransformer extends TransformerAbstract
 {
     /**
      * List of resources to automatically include
@@ -30,11 +30,11 @@ class PatientScheduleTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(PatientSchedule $patientSchedule)
+    public function transform(PatientScheduleFace $patientSchedule)
     {
         $doctor = resolve('User')->getModel()->where('id', $patientSchedule->doctor_id)->get();
         $patient = resolve('User')->getModel()->where('id', $patientSchedule->patient_id)->get();
-        $schedule = resolve('Schedule')->getModel()->where('id', $patientSchedule->schedule_id)->get();
+        $schedule = resolve('Faceschedule')->getModel()->where('id', $patientSchedule->schedule_id)->get();
 
         return [
             'id' => $patientSchedule->id,
@@ -52,8 +52,6 @@ class PatientScheduleTransformer extends TransformerAbstract
             'heigth' => $patientSchedule->heigth,
             'diagnosis' => $patientSchedule->diagnosis,
             'status' => $patientSchedule->status,
-            'payment_status' => $patientSchedule->payment_status,
-            'payments' => $patientSchedule->payments,
         ];
     }
 }

@@ -27,6 +27,9 @@ class CreatePrescription extends FormRequest
             'doctor_id' => 'required',
             'patient_id' => 'required',
             'prescription' => 'required',
+            'medicines' => 'nullable',
+            'license' => 'nullable',
+            'signature' => 'sometimes|image',
         ];
     }
 }

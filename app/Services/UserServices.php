@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Helpers\TransformerHelper;
 use App\Transformers\UserTransformer;
+use Illuminate\Http\UploadedFile;
 
 class UserServices
 {
@@ -66,9 +67,12 @@ class UserServices
         }
     }
 
-    public function updateUser($data, $id)
+    public function updateUser($data, $id, UploadedFile $image = null)
     {
         try {
+
+            $data['profile'] = url('/') . '/uploads/images/' .$image->getClientOriginalName();
+            $image->storeAs('images', $image->getClientOriginalName(), 'public_uploads');
 
             $user = resolve('User')->update($data, $id);
 

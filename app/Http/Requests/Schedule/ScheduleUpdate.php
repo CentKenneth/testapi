@@ -25,9 +25,10 @@ class ScheduleUpdate extends FormRequest
     {
         return [
             'id' => 'required',
-            'start' => 'required',
+            'start' => 'nullable',
             'end' => 'nullable',
-            'name' => 'required',
+            'name' => 'nullable',
+            'status' => 'nullable',
         ];
     }
 }

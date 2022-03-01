@@ -9,6 +9,8 @@ use App\Models\Schedule;
 use App\Models\PatientSchedule;
 use App\Models\PatientChat;
 use App\Models\Prescription;
+use App\Models\Faceschedule;
+use App\Models\PatientScheduleFace;
 use App\Repositories\Repository;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +40,12 @@ class RepositoryServiceProvider extends ServiceProvider
         });
         $this->app->singleton('Prescription', function() {
             return new Repository(new Prescription);
+        });
+        $this->app->singleton('Faceschedule', function() {
+            return new Repository(new Faceschedule);
+        });
+        $this->app->singleton('PatientScheduleFace', function() {
+            return new Repository(new PatientScheduleFace);
         });
     }
 

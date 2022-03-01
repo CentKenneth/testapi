@@ -36,7 +36,9 @@ class Register extends FormRequest
             'city' => 'required',
             'password' => 'required|string|min:6',
             'password_confirmation' => 'required_with:password|same:password|min:6|max:255',
-            'role' => 'required'
+            'role' => 'required',
+            'zip' => 'nullable',
+            'country' => 'nullable',
         ];
     }
 }

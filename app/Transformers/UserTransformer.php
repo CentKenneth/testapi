@@ -36,6 +36,14 @@ class UserTransformer extends TransformerAbstract
             'name' => $user->name,
             'email' => $user->email,
             'role' => $user->role,
+            'profile' => $user->profile,
+            'zip' => $user->zip,
+            'country' => $user->country,
+            'city' => $user->city,
+            'street_address' => $user->street_address,
+            'height' => $user->height,
+            'weight' => $user->weight,
+            'bday' => $user->bday
         ];
     }
 }

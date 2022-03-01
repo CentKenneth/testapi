@@ -19,4 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/', [PatientController::class, 'showEmployees']);
+Route::get('/', [PatientController::class, 'showEmployees']);

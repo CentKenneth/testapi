@@ -31,6 +31,8 @@ class updateSchedule extends FormRequest
             'heigth' => 'nullable',
             'diagnosis' => 'nullable',
             'status' => 'nullable',
+            'payments' => 'nullable',
+            'payment_status' => 'nullable',
         ];
     }
 }

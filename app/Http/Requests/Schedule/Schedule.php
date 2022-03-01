@@ -28,6 +28,7 @@ class Schedule extends FormRequest
             'end' => 'nullable',
             'name' => 'required',
             'user_id' => 'required',
+            'status' => 'nullable',
         ];
     }
 }

@@ -44,6 +44,7 @@ class PatientChatsTransformer extends TransformerAbstract
             'messages' => $patientChat->messages,
             'whosend' => $patientChat->whosend,
             'image' => $patientChat->image,
+            'profile' => $doctor[0]->profile,
             'image_url' => $patientChat->image_url,
         ];
     }

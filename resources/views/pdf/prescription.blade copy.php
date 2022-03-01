@@ -27,25 +27,25 @@
 
 <body>
     <div>
-        <h2 class="title">MEENC Healthcare</h2>
+        <h2 class="title">MEENC</h2>
 
         <div class="sub-title">
             <table class="table" style="border-bottom: 3px solid lightblue;">
                 <thead>
                     <tr>
                         <td style="width: 50%">
-                            Dr. {{$datas['doctor']['name']}}
+                            <!-- Dr. {{$datas['doctor']['name']}} -->
                         </td>
                         <td style="width: 50%" class="text-right">
-                            {{$datas['doctor']['phone']}}
+                            <!-- {{$datas['doctor']['phone']}} -->
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 50%">
-                            {{$datas['doctor']['street_address']}} {{$datas['doctor']['city']}}
+                            <!-- {{$datas['doctor']['street_address']}} {{$datas['doctor']['city']}} -->
                         </td>
                         <td style="width: 50%" class="text-right">
-                            {{$datas['prescription']['license']}}
+                            #2423242242
                         </td>
                     </tr>
                 </thead>
@@ -57,18 +57,22 @@
                 <thead>
                     <tr>
                         <td style="width: 50%">
-                            Patient Name: {{$datas['patient']['name']}}
+                            Name:
+                            <!-- Name: {{$datas['patient']['name']}} -->
                         </td>
                         <td style="width: 50%" class="text-right">
-                            Age: {{$datas['patient']['bday']}} years old
+                            Age:
+                            <!-- Age: {{$datas['patient']['bday']}} years old -->
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 50%">
-                            Gender: {{$datas['patient']['gender']}}
+                            Gender:
+                            <!-- Gender: {{$datas['patient']['gender']}} -->
                         </td>
                         <td style="width: 50%" class="text-right">
-                            Date: {{ \Carbon\Carbon::parse($datas['prescription']['created_at'])->format('d/m/Y')}}
+                            Date:
+                            <!-- Date: {{ \Carbon\Carbon::parse($datas['prescription']['created_at'])->format('d/m/Y')}} -->
                         </td>
                     </tr>
                 </thead>
@@ -80,24 +84,11 @@
                 Prescription:
             </div>
             <div>
-                &nbsp;&nbsp;{{$datas['prescription']['medicines']}}
-            </div>
-            <br>
-            <div>
-                Comments:
-            </div>
-            <div>
-                &nbsp;&nbsp;{{$datas['prescription']['prescription']}}
+                <!-- {{$datas['prescription']['prescription']}} -->
             </div>
         </div>
-        
-        <div style="position:absolute; bottom: 50px; right: 20px;">
-            @if($datas['prescription']['signature'])
-                <img style="width: 100px;margin-left: 20px;margin-bottom:-20px" src="{{ $datas['prescription']['signature'] }}" alt="">
-            @endif
-            <div>__________________</div>
-            <div>Dr. {{$datas['doctor']['name']}}</div>
-        </div>
+
+        <img style="width: 80px" src="{{ URL::to('/') }}/uploads/images/prescription.jpg" alt="">
 
     </div>
 

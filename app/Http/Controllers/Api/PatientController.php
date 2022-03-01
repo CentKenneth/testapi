@@ -28,9 +28,29 @@ class PatientController extends Controller
         }
     }
 
+    public function createPatientScheduleFace(CreateSchedule $request) {
+        try {
+
+            $data = collect($request->validated())
+            ->toArray();
+
+            return resolve('PatientServices')->storeFace($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getPatientSchedule(PatientSchedule $request) {
         try {
             return resolve('PatientServices')->index($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getPatientScheduleFace(PatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->indexFace($request->toArray());
         } catch (Exception $exception) {
             throw $exception;
         }
@@ -44,6 +64,14 @@ class PatientController extends Controller
         }
     }
 
+    public function getPatientScheduleBydoctorFace(PatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->indexFace($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function editPatientSchedule(updateSchedule $request) {
         try {
             $data = collect($request->validated())
@@ -51,6 +79,18 @@ class PatientController extends Controller
                     ->toArray();
 
             return resolve('PatientServices')->update($data, $request->id);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function editPatientScheduleFace(updateSchedule $request) {
+        try {
+            $data = collect($request->validated())
+                    ->except(['id'])
+                    ->toArray();
+
+            return resolve('PatientServices')->updateFace($data, $request->id);
         } catch (Exception $exception) {
             throw $exception;
         }
@@ -126,9 +166,10 @@ class PatientController extends Controller
     public function createPrescription(CreatePrescription $request) {
         try {
             $data = collect($request->validated())
+                ->except('signature')
                 ->toArray();
 
-            return resolve('PatientServices')->createPrescription($data);
+            return resolve('PatientServices')->createPrescription($data, $request->signature);
         } catch (Exception $exception) {
             throw $exception;
         }

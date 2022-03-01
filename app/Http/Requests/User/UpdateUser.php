@@ -24,9 +24,10 @@ class UpdateUser extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
-            'id' => 'required'
+            'name' => 'nullable',
+            'email' => 'nullable',
+            'id' => 'required',
+            'profile' => 'sometimes|image',
         ];
     }
 }

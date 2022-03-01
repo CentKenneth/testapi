@@ -102,10 +102,10 @@ class UserController extends Controller
     {
         try {
             $data = collect($request->validated())
-            ->except(['id'])
+            ->except(['id', 'profile'])
             ->toArray();
 
-            return resolve('UserServices')->updateUser($data, $request->id);
+            return resolve('UserServices')->updateUser($data, $request->id, $request->profile);
         } catch (Exception $exception) {
             throw $exception;
         }
