@@ -29,6 +29,8 @@ class CreatePrescription extends FormRequest
             'prescription' => 'required',
             'medicines' => 'nullable',
             'license' => 'nullable',
+            'clinic_name' => 'nullable',
+            'clinic_address' => 'nullable',
             'signature' => 'sometimes|image',
         ];
     }

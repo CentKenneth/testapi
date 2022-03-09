@@ -44,7 +44,6 @@ class PatientScheduleTransformer extends TransformerAbstract
             'patient_name' => $patient[0]->name,
             'patient_phone' => $patient[0]->phone,
             'patient_email' => $patient[0]->email,
-            'diagnosis' => $patientSchedule->diagnosis,
             'schedule' => $schedule[0]->start,
             'bday' => $patientSchedule->bday,
             'address' => $patientSchedule->address,

@@ -29,38 +29,42 @@
 </style>
 
 <body>
-    <div>
-        <h2 class="title">MEENC Healthcare</h2>
+    <div style="padding: 10px">
+        <h2 class="title">MEENC</h2>
 
-        <h3 class="title-2">{{$datas['prescription']['clinic_name']}}</h3>
-        <h4 class="title-2">{{$datas['prescription']['clinic_address']}}</h4>
-       
+        <h3 class="title-2">Clinic Name</h3>
+        <h3 class="title-2">Address</h3>
+
         <div class="body-text" style="margin-top: 30px;">
             <table  class="table">
                 <thead>
                     <tr>
                         <td style="width: 70%">
-                            Patient Name: {{$datas['patient']['name']}}
+                            Name:
+                            sdfds
                         </td>
                         <td style="width: 30%">
-                            Date: {{ \Carbon\Carbon::parse($datas['prescription']['created_at'])->format('d/m/Y')}}
+                            Date:
+                            sdfds
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 50%">
-                            Age: {{$datas['patient']['bday']}} years old
+                            Age:
+                            sdfds
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 50%">
-                            Gender: {{$datas['patient']['gender']}}
+                            Address:
+                            sdfds
                         </td>
                     </tr>
                 </thead>
             </table>
         </div>
 
-        <img style="width: 80px;margin-top: 20px;" src="{{ URL::to('/') }}/uploads/images/rx.png" alt="">
+        <img style="width: 80px" src="{{ URL::to('/') }}/uploads/images/rx.png" alt="">
 
         <div class="body-text" style="margin-top: -20px; margin-left: 30px;">
             <table  class="table">
@@ -68,11 +72,13 @@
                     <tr>
                         <td style="width: 50%">
                             OD:
+                            sdfds
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 50%">
                             OS:
+                            sdfds
                         </td>
                     </tr>
                 </thead>
@@ -98,12 +104,10 @@
         </div>
 
         <div style="position:absolute; bottom: 0px; right: 20px;">
-            @if($datas['prescription']['signature'])
-                <img style="width: 100px;margin-left: 20px;margin-bottom:-20px" src="{{ $datas['prescription']['signature'] }}" alt="">
-            @endif
+            <img style="width: 80px; margin-left: 10px;" src="{{ URL::to('/') }}/uploads/images/prescription.jpg" alt="">
             <div>__________________</div>
-            <div style="margin-left: 20px; margin-top:10px;">Dr. {{$datas['doctor']['name']}}</div>
-            <div style="margin-left: 20px; margin-top:5px;">{{$datas['doctor']['phone']}}</div>
+            <div style="margin-left: 20px; margin-top:10px;">Dr. leonhail</div>
+            <div style="margin-left: 20px; margin-top:10px;">23232323</div>
         </div>
 
         <div style="position:absolute; bottom: 0px; left: 20px;">

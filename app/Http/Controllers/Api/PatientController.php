@@ -200,6 +200,6 @@ class PatientController extends Controller
     // test controller for pdf
     public function showEmployees() {
         $prescription = resolve('PatientChat')->all();
-        return view('pdf.prescription', compact('prescription'));
+        return view('pdf.prescriptions', compact('prescription'));
     }
 }
