@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('patient-chats-notifications', [PatientController::class, 'PatientChatsNotifications']);
         Route::post('patient-chats-update-notifications', [PatientController::class, 'PatientChatsUpdateNotifications']);
 
+        Route::post('doctor-chats-notifications', [PatientController::class, 'DoctorChatsNotifications']);
+        Route::post('doctor-chats-update-notifications', [PatientController::class, 'DoctorChatsUpdateNotifications']);
+
         // Prescription
         Route::post('create-prescription', [PatientController::class, 'createPrescription']);
         Route::post('get-prescription', [PatientController::class, 'getPrescription']);
