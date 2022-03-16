@@ -144,6 +144,39 @@ class PatientServices
         }
     }
 
+    public function PatientChatsNotifications(array $data)
+    {
+        try {
+            $items = resolve('PatientChat')
+                ->getModel()
+                ->where('patient_id', $data['patient_id'])
+                ->where('doctor_id', $data['doctor_id'])
+                ->where('is_view', 'No')
+                ->limit(5)
+                ->orderBy('created_at','asc')
+                ->get();
+
+            return TransformerHelper::collection($items, new PatientChatsTransformer, $data);
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function PatientChatsUpdateNotifications(array $data)
+    {
+        try {
+            $items = resolve('PatientChat')
+                ->getModel()
+                ->where('patient_id', $data['patient_id'])
+                ->where('doctor_id', $data['doctor_id'])
+                ->update(array('is_view' => 'Yes'));
+
+            return $items;
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getPatientChatsByPatient(array $data)
     {
         try {

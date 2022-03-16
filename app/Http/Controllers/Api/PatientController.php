@@ -10,6 +10,7 @@ use App\Http\Requests\Patient\updateSchedule;
 use App\Http\Requests\Patient\PatientChat;
 use App\Http\Requests\Patient\CreatePatientChat;
 use App\Http\Requests\Patient\CreatePrescription;
+use App\Http\Requests\Patient\PatientChatNotifications;
 use App\Http\Requests\Patient\getPrescription;
 
 
@@ -192,6 +193,28 @@ class PatientController extends Controller
                 ->toArray();
 
             return resolve('PatientServices')->getPrescriptionByDoctor($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function PatientChatsNotifications(PatientChatNotifications $request) {
+        try {
+            $data = collect($request->validated())
+                ->toArray();
+
+            return resolve('PatientServices')->PatientChatsNotifications($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function PatientChatsUpdateNotifications(PatientChatNotifications $request) {
+        try {
+            $data = collect($request->validated())
+                ->toArray();
+
+            return resolve('PatientServices')->PatientChatsUpdateNotifications($data);
         } catch (Exception $exception) {
             throw $exception;
         }
