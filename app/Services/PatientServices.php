@@ -150,9 +150,9 @@ class PatientServices
             $items = resolve('PatientChat')
                 ->getModel()
                 ->where('patient_id', $data['patient_id'])
-                ->where('is_view', 'No')
+                ->where('whosend', 'Doctor')
+                ->orderBy('id','desc')
                 ->limit(5)
-                ->orderBy('created_at','asc')
                 ->get();
 
             return TransformerHelper::collection($items, new PatientChatsTransformer, $data);
@@ -167,9 +167,9 @@ class PatientServices
             $items = resolve('PatientChat')
                 ->getModel()
                 ->where('doctor_id', $data['doctor_id'])
-                ->where('is_view', 'No')
+                ->where('whosend', 'Patient')
+                ->orderBy('id','desc')
                 ->limit(5)
-                ->orderBy('created_at','asc')
                 ->get();
 
             return TransformerHelper::collection($items, new PatientChatsTransformer, $data);

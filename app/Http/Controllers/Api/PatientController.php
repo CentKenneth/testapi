@@ -209,12 +209,34 @@ class PatientController extends Controller
         }
     }
 
+    public function DoctorChatsNotifications(PatientChatNotifications $request) {
+        try {
+            $data = collect($request->validated())
+                ->toArray();
+
+            return resolve('PatientServices')->DoctorChatsNotifications($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function PatientChatsUpdateNotifications(PatientChatNotifications $request) {
         try {
             $data = collect($request->validated())
                 ->toArray();
 
             return resolve('PatientServices')->PatientChatsUpdateNotifications($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function DoctorChatsUpdateNotifications(PatientChatNotifications $request) {
+        try {
+            $data = collect($request->validated())
+                ->toArray();
+
+            return resolve('PatientServices')->DoctorChatsUpdateNotifications($data);
         } catch (Exception $exception) {
             throw $exception;
         }

@@ -24,8 +24,8 @@ class PatientChatNotifications extends FormRequest
     public function rules()
     {
         return [
-            'doctor_id' => 'required',
-            'patient_id' => 'required',
+            'doctor_id' => 'nullable',
+            'patient_id' => 'nullable',
         ];
     }
 }
