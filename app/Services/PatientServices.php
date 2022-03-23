@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PatientServices
 {
-    public function store($data)
+    public function store($data, UploadedFile $image = null)
     {
         try {
+            $data['image'] = url('/') . '/uploads/images/' .$image->getClientOriginalName();
+            $image->storeAs('images', $image->getClientOriginalName(), 'public_uploads');
             
             $patient_schedule = resolve('PatientSchedule')->store(collect($data)->toArray());
             return $patient_schedule;

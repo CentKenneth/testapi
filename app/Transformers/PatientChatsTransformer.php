@@ -42,6 +42,7 @@ class PatientChatsTransformer extends TransformerAbstract
             'patient_name' => $patient[0]->name,
             'doctor_name' => $doctor[0]->name,
             'messages' => $patientChat->messages,
+            'created_at' => $patientChat->created_at,
             'whosend' => $patientChat->whosend,
             'image' => $patientChat->image,
             'is_view' => $patientChat->is_view,

@@ -21,9 +21,10 @@ class PatientController extends Controller
         try {
 
             $data = collect($request->validated())
+            ->except('image')
             ->toArray();
 
-            return resolve('PatientServices')->store($data);
+            return resolve('PatientServices')->store($data, $request->image);
         } catch (Exception $exception) {
             throw $exception;
         }

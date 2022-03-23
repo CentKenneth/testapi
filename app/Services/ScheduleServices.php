@@ -149,7 +149,7 @@ class ScheduleServices
     {
         try {
 
-            $schedule = resolve('Schedule')->getModel()->where('user_id', $id)->whereBetween('start', [Carbon::now(), Carbon::now()->endOfWeek()])->get();
+            $schedule = resolve('Schedule')->getModel()->where('user_id', $id)->get();
 
             return $schedule;
 
@@ -162,7 +162,7 @@ class ScheduleServices
     {
         try {
 
-            $schedule = resolve('Faceschedule')->getModel()->where('user_id', $id)->whereBetween('start', [Carbon::now(), Carbon::now()->endOfWeek()])->get();
+            $schedule = resolve('Faceschedule')->getModel()->where('user_id', $id)->get();
 
             return $schedule;
 
