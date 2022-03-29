@@ -14,13 +14,29 @@ use Illuminate\Support\Facades\Storage;
 
 class PatientServices
 {
-    public function store($data, UploadedFile $image = null)
+    public function store($data, array $images)
     {
         try {
-            $data['image'] = url('/') . '/uploads/images/' .$image->getClientOriginalName();
-            $image->storeAs('images', $image->getClientOriginalName(), 'public_uploads');
-            
+
             $patient_schedule = resolve('PatientSchedule')->store(collect($data)->toArray());
+
+            if(sizeof($images) > 0) {
+                $imagesData = [];
+
+                foreach ($images as $image) {
+                    $obj['schedules_id'] = $patient_schedule->id;
+                    $obj['image'] = url('/') . '/uploads/images/' .$image->getClientOriginalName();
+                    $image->storeAs('images', $image->getClientOriginalName(), 'public_uploads');
+
+                    array_push($imagesData, $obj);
+                }
+
+                if(sizeof($imagesData) > 0) {
+                    resolve('PatientSchedulesImages')->getModel()->insert($imagesData);
+                }
+
+            }
+
             return $patient_schedule;
 
         } catch (Exception $exception) {

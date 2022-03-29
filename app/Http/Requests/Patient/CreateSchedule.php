@@ -33,7 +33,8 @@ class CreateSchedule extends FormRequest
             'weigth' => 'nullable',
             'heigth' => 'nullable',
             'diagnosis' => 'nullable',
-            'image' => 'sometimes|image',
+            'images' => 'array',
+            'images.*' => 'sometimes|image',
         ];
     }
 }

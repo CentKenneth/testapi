@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('prescription-by-doctors-email/{email}', [TransactionController::class, 'getPrescriptionByDoctorsEmail']);
 
         // Patient Schedule
+        Route::get('patient-schedule-images/{id}', [PatientController::class, 'getPatientScheduleImages']);
         Route::post('patient-schedule', [PatientController::class, 'createPatientSchedule']);
         Route::post('get-patient-schedule', [PatientController::class, 'getPatientSchedule']);
         Route::post('get-patient-schedule-by-doctor', [PatientController::class, 'getPatientScheduleBydoctor']);

@@ -17,14 +17,25 @@ use App\Http\Requests\Patient\getPrescription;
 class PatientController extends Controller
 {
     
+    public function getPatientScheduleImages($id) {
+        try {
+
+            $data = resolve('PatientSchedulesImages')->getModel()->where('schedules_id', $id)->get();
+
+            return $data;
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function createPatientSchedule(CreateSchedule $request) {
         try {
 
             $data = collect($request->validated())
-            ->except('image')
+            ->except('images')
             ->toArray();
 
-            return resolve('PatientServices')->store($data, $request->image);
+            return resolve('PatientServices')->store($data, $request->file('images'));
         } catch (Exception $exception) {
             throw $exception;
         }
