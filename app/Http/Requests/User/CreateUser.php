@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Register extends FormRequest
+class CreateUser extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,21 +25,24 @@ class Register extends FormRequest
     {
         return [
             'temppass' => 'nullable',
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
-            'bday' => 'required',
-            'gender' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'street_address' => 'required',
-            'city' => 'required',
-            'password' => 'required|string|min:6',
+            'firstname' => 'nullable',
+            'lastname' => 'nullable',
+            'height' => 'nullable',
+            'weight' => 'nullable',
+            'bday' => 'nullable',
+            'gender' => 'nullable',
+            'email' => 'nullable|email',
+            'phone' => 'nullable',
+            'street_address' => 'nullable',
+            'city' => 'nullable',
+            'password' => 'nullable|string|min:6',
             'password_confirmation' => 'required_with:password|same:password|min:6|max:255',
-            'role' => 'required',
+            'role' => 'nullable',
             'zip' => 'nullable',
             'country' => 'nullable',
+            'degreelevel' => 'nullable',
+            'degreefield' => 'nullable',
+            'clinicname' => 'nullable'
         ];
     }
 }

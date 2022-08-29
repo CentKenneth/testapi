@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\User\Register;
 use App\Http\Requests\User\RegisterDoctor;
 use App\Http\Requests\User\UpdateUser;
+use App\Http\Requests\User\UpdateUsers;
+use App\Http\Requests\User\CreateUser;
 use App\Http\Requests\User\ChangePassword;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,6 +108,65 @@ class UserController extends Controller
             ->toArray();
 
             return resolve('UserServices')->updateUser($data, $request->id, $request->profile);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getPatientsUser()
+    {
+        try {
+
+            return resolve('UserServices')->getPatientsUser();
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getDoctorsUser()
+    {
+        try {
+
+            return resolve('UserServices')->getDoctorsUser();
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function getReports()
+    {
+        try {
+
+            return resolve('UserServices')->getReports();
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function createUser(createUser $request)
+    {
+        try {
+            $data = collect($request->validated())
+            ->except('password_confirmation')
+            ->toArray();
+
+            $data['name'] = $request['firstname']. ' ' .$request['lastname'];
+
+            return resolve('UserServices')->createUser($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function updateUsers(UpdateUsers $request)
+    {
+        try {
+            $data = collect($request->validated())
+            ->except(['id', 'profile'])
+            ->except('password_confirmation')
+            ->toArray();
+
+            return resolve('UserServices')->updateUsers($data, $request->id, $request->profile);
         } catch (Exception $exception) {
             throw $exception;
         }

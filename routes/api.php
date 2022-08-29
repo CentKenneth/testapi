@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 // guest user
 Route::post('register', [UserController::class, 'registerUser']);
+
 // guest doctor
 Route::post('register-doctor', [UserController::class, 'registerDoctor']);
 Route::post('auth/logout', [UserController::class, 'logout']);
@@ -32,6 +33,13 @@ Route::post('auth/logout', [UserController::class, 'logout']);
 // Authorized Routes
 Route::group(['middleware' => ['auth:api']], function () {
     Route::prefix('authorized')->group(function () {
+        // Admin
+        Route::post('create-user', [UserController::class, 'createUser']);
+        Route::post('update-users', [UserController::class, 'updateUsers']);
+        Route::get('get-patients', [UserController::class, 'getPatientsUser']);
+        Route::get('get-doctors', [UserController::class, 'getDoctorsUser']);
+        Route::get('get-reports', [UserController::class, 'getReports']);
+
         // User
         Route::get('auth', [UserController::class, 'authDetails']);
         Route::post('change-password', [UserController::class, 'changePassword']);
