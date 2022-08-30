@@ -133,6 +133,16 @@ class UserController extends Controller
         }
     }
 
+    public function getTestReports()
+    {
+        try {
+
+            return resolve('UserServices')->getTestReports();
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getReports()
     {
         try {

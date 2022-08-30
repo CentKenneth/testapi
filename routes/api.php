@@ -27,6 +27,8 @@ Route::post('register', [UserController::class, 'registerUser']);
 // guest doctor
 Route::post('register-doctor', [UserController::class, 'registerDoctor']);
 Route::post('auth/logout', [UserController::class, 'logout']);
+
+Route::get('get-reports', [UserController::class, 'getTestReports']);
 // transaction
 
 

@@ -84,6 +84,36 @@ class UserServices
         }
     }
 
+    public function getTestReports()
+    {
+        try {
+            $numPatients = resolve('User')->getModel()
+                        ->where('role', 'patient')
+                        ->get()
+                        ->count();
+
+            $numDoctors = resolve('User')->getModel()
+                        ->where('role', 'doctor')
+                        ->get()
+                        ->count();
+
+            $transactions = resolve('PatientSchedule')->getModel()
+                        ->get()
+                        ->count();
+                
+            $data = [
+                "numPatients" => $numPatients,
+                "transactions" => $transactions,
+                "numDoctors" => $numDoctors,
+            ];
+
+            return $data;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function getReports()
     {
         try {
