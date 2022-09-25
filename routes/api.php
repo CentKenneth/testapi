@@ -99,12 +99,14 @@ Route::group(['middleware' => ['auth:api']], function () {
         // Patient Schedule
         Route::get('patient-schedule-images/{id}', [PatientController::class, 'getPatientScheduleImages']);
         Route::post('patient-schedule', [PatientController::class, 'createPatientSchedule']);
+        Route::post('print-schedule', [PatientController::class, 'printSchedule']);
         Route::post('get-patient-schedule', [PatientController::class, 'getPatientSchedule']);
         Route::post('get-patient-schedule-by-doctor', [PatientController::class, 'getPatientScheduleBydoctor']);
         Route::post('edit-patient-schedule', [PatientController::class, 'editPatientSchedule']);
 
         // Patient Schedule face to face
         Route::post('patient-schedule-face', [PatientController::class, 'createPatientScheduleFace']);
+        Route::post('print-schedule-face', [PatientController::class, 'printScheduleFace']);
         Route::post('get-patient-schedule-face', [PatientController::class, 'getPatientScheduleFace']);
         Route::post('get-patient-schedule-by-doctor-face', [PatientController::class, 'getPatientScheduleBydoctorFace']);
         Route::post('edit-patient-schedule-face', [PatientController::class, 'editPatientScheduleFace']);

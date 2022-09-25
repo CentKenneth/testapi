@@ -35,6 +35,7 @@ class PatientScheduleFaceTransformer extends TransformerAbstract
         $doctor = resolve('User')->getModel()->where('id', $patientSchedule->doctor_id)->get();
         $patient = resolve('User')->getModel()->where('id', $patientSchedule->patient_id)->get();
         $schedule = resolve('Faceschedule')->getModel()->where('id', $patientSchedule->schedule_id)->get();
+        $numberTrans = resolve('PatientScheduleFace')->getModel()->where('patient_id', $patient[0]->id)->get()->count();
 
         return [
             'id' => $patientSchedule->id,
@@ -52,6 +53,8 @@ class PatientScheduleFaceTransformer extends TransformerAbstract
             'heigth' => $patientSchedule->heigth,
             'diagnosis' => $patientSchedule->diagnosis,
             'status' => $patientSchedule->status,
+            'created_at' => $patientSchedule->created_at,
+            'num_trans' => $numberTrans,
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Patient\CreateSchedule;
 use App\Http\Requests\Patient\PatientSchedule;
+use App\Http\Requests\Patient\PrintPatientSchedule;
 use App\Http\Requests\Patient\updateSchedule;
 use App\Http\Requests\Patient\PatientChat;
 use App\Http\Requests\Patient\CreatePatientChat;
@@ -48,6 +49,22 @@ class PatientController extends Controller
             ->toArray();
 
             return resolve('PatientServices')->storeFace($data);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printScheduleFace(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printScheduleFace($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printSchedule(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printSchedule($request->toArray());
         } catch (Exception $exception) {
             throw $exception;
         }
@@ -257,6 +274,6 @@ class PatientController extends Controller
     // test controller for pdf
     public function showEmployees() {
         $prescription = resolve('PatientChat')->all();
-        return view('pdf.prescriptions', compact('prescription'));
+        return view('pdf.reports', compact('prescription'));
     }
 }

@@ -35,6 +35,7 @@ class PatientScheduleTransformer extends TransformerAbstract
         $doctor = resolve('User')->getModel()->where('id', $patientSchedule->doctor_id)->get();
         $patient = resolve('User')->getModel()->where('id', $patientSchedule->patient_id)->get();
         $schedule = resolve('Schedule')->getModel()->where('id', $patientSchedule->schedule_id)->get();
+        $numberTrans = resolve('PatientSchedule')->getModel()->where('patient_id', $patient[0]->id)->get()->count();
 
         return [
             'id' => $patientSchedule->id,
@@ -45,7 +46,7 @@ class PatientScheduleTransformer extends TransformerAbstract
             'patient_phone' => $patient[0]->phone,
             'patient_email' => $patient[0]->email,
             'schedule' => $schedule[0]->start,
-            'bday' => $patientSchedule->bday,
+            'bday' => $patient[0]->bday,
             'image' => $patientSchedule->image,
             'address' => $patientSchedule->address,
             'weigth' => $patientSchedule->weigth,
@@ -99,6 +100,8 @@ class PatientScheduleTransformer extends TransformerAbstract
             'management' => $patientSchedule->management,
             'type_lens' => $patientSchedule->type_lens,
             'type_frame' => $patientSchedule->type_frame,
+            'created_at' => $patientSchedule->created_at,
+            'num_trans' => $numberTrans,
         ];
     }
 }

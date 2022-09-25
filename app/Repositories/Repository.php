@@ -5,6 +5,8 @@ namespace App\Repositories;
 use Illuminate\Support\Arr;
 use App\Helpers\ArrayHelper;
 use App\Helpers\StringHelper;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\Repository as RepositoryInterface;
 
@@ -71,6 +73,19 @@ class Repository implements RepositoryInterface
                 $q->where('doctor_id', $data['doctor_id']);
             })
 
+            // filter 2 date
+            ->when(ArrayHelper::isset($data, 'start'), function ($q) use ($data) {
+                $q->when(ArrayHelper::isset($data, 'end'), function ($r) use ($data) {
+                    $r->whereBetween(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), [$data['start'], $data['end']]);
+                });
+            })
+
+            // filter 1 date
+            ->when(ArrayHelper::isset($data, 'single_date'), function ($q) use ($data) {
+                $q->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m-%d'))"), $data['single_date']);
+            })
+           
+            
             // Determine if the request has sort_by
             ->when(ArrayHelper::isset($data, 'sort_by'), function ($query) use ($data) {
                 $query->orderBy($data['sort_by'], $data['sort_desc'] ? 'desc' : 'asc');
