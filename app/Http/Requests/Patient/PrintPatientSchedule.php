@@ -29,7 +29,8 @@ class PrintPatientSchedule extends FormRequest
             'single_date' => 'nullable',
             'search' => 'nullable',
             's_fields' => 'nullable',
-            'doctor_id' => 'nullable'
+            'doctor_id' => 'nullable',
+            'pat_id' => 'nullable'
         ];
     }
 }

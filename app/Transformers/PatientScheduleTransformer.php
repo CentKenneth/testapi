@@ -32,10 +32,20 @@ class PatientScheduleTransformer extends TransformerAbstract
      */
     public function transform(PatientSchedule $patientSchedule)
     {
+        $total = 0;
+
         $doctor = resolve('User')->getModel()->where('id', $patientSchedule->doctor_id)->get();
         $patient = resolve('User')->getModel()->where('id', $patientSchedule->patient_id)->get();
         $schedule = resolve('Schedule')->getModel()->where('id', $patientSchedule->schedule_id)->get();
+        $patientSchedulePayment = resolve('PatientSchedule')->getModel()->where('patient_id', $patient[0]->id)->get()->toArray();
         $numberTrans = resolve('PatientSchedule')->getModel()->where('patient_id', $patient[0]->id)->get()->count();
+        $numberPending = resolve('PatientSchedule')->getModel()->where('patient_id', $patient[0]->id)->where('status', 'Pending')->get()->count();
+        $numberApproved = resolve('PatientSchedule')->getModel()->where('patient_id', $patient[0]->id)->where('status', 'Done')->get()->count();
+
+        for ($x = 0; $x <= sizeof($patientSchedulePayment); $x++) {
+            $payments = !empty($patientSchedulePayment[$x]['payments']) ? $patientSchedulePayment[$x]['payments'] : 0;
+            $total = $total + $payments;
+        }
 
         return [
             'id' => $patientSchedule->id,
@@ -55,6 +65,7 @@ class PatientScheduleTransformer extends TransformerAbstract
             'status' => $patientSchedule->status,
             'payment_status' => $patientSchedule->payment_status,
             'payments' => $patientSchedule->payments,
+            'tot_payments' => $total,
 
             'case_history' => $patientSchedule->case_history,
             'other_history' => $patientSchedule->other_history,
@@ -102,6 +113,8 @@ class PatientScheduleTransformer extends TransformerAbstract
             'type_frame' => $patientSchedule->type_frame,
             'created_at' => $patientSchedule->created_at,
             'num_trans' => $numberTrans,
+            'num_pending' => $numberPending,
+            'num_approved' => $numberApproved,
         ];
     }
 }

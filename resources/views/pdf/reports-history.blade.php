@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Appointment Summary</title>
+    <title>Patient Appointment History</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
-<style>
+<style lang="scss">
     .title {
         text-align: center;
         color: lightblue;
@@ -62,52 +62,58 @@
     </div>
 
     <div>
-        <h3>Appointment Summary</h3>
+        <h3>Patient Appointment History</h3>
 
         <div style="width: 100%;">
             <table class="body-table"  style="width: 100%">
                 <thead>
                     <tr class="body-table">
-                        <td class="body-table" style="width: 25%; padding: 10px; font-weight: bold; font-text: 15px;">
+                        <td class="body-table" style="width: 20%; padding: 10px; font-weight: bold; font-text: 15px;">
                             Patient Name
                         </td>
-                        <td class="body-table" style="width: 25%; padding: 10px; font-weight: bold; font-text: 15px;">
+                        <td class="body-table" style="width: 20%; padding: 10px; font-weight: bold; font-text: 15px;">
                             Email
                         </td>
-                        <td class="body-table" style="width: 20%; padding: 10px; font-weight: bold; font-text: 15px;">
+                        <td class="body-table" style="width: 10%; padding: 10px; font-weight: bold; font-text: 15px;">
                             Mobile
                         </td>
                         <td class="body-table" style="width: 10%; padding: 10px; font-weight: bold; font-text: 15px;">
-                            No. of Transactions
+                            Schedule Date
                         </td>
                         <td class="body-table" style="width: 10%; padding: 10px; font-weight: bold; font-text: 15px;">
-                            Pending
+                            Schedule Time
+                        </td>
+                        <td class="body-table" style="width: 20%; padding: 10px; font-weight: bold; font-text: 15px;">
+                            Symptoms
                         </td>
                         <td class="body-table" style="width: 10%; padding: 10px; font-weight: bold; font-text: 15px;">
-                            Done
+                            Status
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($datas['data'] as $data)
                         <tr class="body-table">
-                            <td class="body-table" style="width: 25%; padding: 10px;">
+                            <td class="body-table" style="width: 20%; padding: 10px;">
                                 {{$data['patient_name']}}
                             </td>
-                            <td class="body-table" style="width: 25%; padding: 10px;">
+                            <td class="body-table" style="width: 20%; padding: 10px;">
                                 {{$data['patient_email']}}
                             </td>
-                            <td class="body-table" style="width: 20%; padding: 10px;">
+                            <td class="body-table" style="width: 10%; padding: 10px;">
                                 {{$data['patient_phone']}}
                             </td>
                             <td class="body-table" style="width: 10%; padding: 10px;">
-                                {{$data['num_trans']}}
+                                {{date('d-m-Y', strtotime($data['schedule']));}}
                             </td>
                             <td class="body-table" style="width: 10%; padding: 10px;">
-                                {{$data['num_pending']}}
+                                {{date('H:m a', strtotime($data['schedule']))}}
+                            </td>
+                            <td class="body-table" style="width: 20%; padding: 10px;">
+                                {{$data['diagnosis']}}
                             </td>
                             <td class="body-table" style="width: 10%; padding: 10px;">
-                                {{$data['num_approved']}}
+                                {{$data['status']}}
                             </td>
                         </tr>
                     @endforeach

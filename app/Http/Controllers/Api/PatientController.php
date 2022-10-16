@@ -62,6 +62,38 @@ class PatientController extends Controller
         }
     }
 
+    public function printScheduleFaceHistory(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printScheduleFaceHistory($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printScheduleHistory(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printScheduleHistory($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printScheduleInfo(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printScheduleInfo($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printScheduleFaceInfo(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printScheduleFaceInfo($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function printSchedule(PrintPatientSchedule $request) {
         try {
             return resolve('PatientServices')->printSchedule($request->toArray());
@@ -274,6 +306,6 @@ class PatientController extends Controller
     // test controller for pdf
     public function showEmployees() {
         $prescription = resolve('PatientChat')->all();
-        return view('pdf.reports', compact('prescription'));
+        return view('pdf.reports-patient-info', compact('prescription'));
     }
 }
