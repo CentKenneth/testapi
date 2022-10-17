@@ -100,6 +100,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('patient-schedule-images/{id}', [PatientController::class, 'getPatientScheduleImages']);
         Route::post('patient-schedule', [PatientController::class, 'createPatientSchedule']);
         Route::post('print-schedule', [PatientController::class, 'printSchedule']);
+        Route::post('print-payment-summary', [PatientController::class, 'printPaymentSummary']);
+        Route::post('print-payment-history', [PatientController::class, 'printPaymentHistory']);
         Route::post('print-schedule-history', [PatientController::class, 'printScheduleHistory']);
         Route::post('print-schedule-info', [PatientController::class, 'printScheduleInfo']);
         Route::post('get-patient-schedule', [PatientController::class, 'getPatientSchedule']);

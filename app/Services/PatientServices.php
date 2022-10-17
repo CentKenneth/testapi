@@ -112,6 +112,62 @@ class PatientServices
         }
     }
 
+    public function printPaymentSummary(array $data)
+    {
+        try {
+            $items = resolve('PatientSchedule')->index($data);
+            
+            $items = $items->get();
+
+            $datas = TransformerHelper::collection($items, new PatientScheduleTransformer, $data);
+            
+            $pdf = PDF::loadView('pdf.reports-payment-summary', compact('datas'));
+
+            $random = rand();
+            $random2 = rand();
+
+            $url = url('/') . '/uploads/' . $random . '' . $random2 . '.pdf';
+
+            $prescription['url'] = $url;
+
+            Storage::disk('public_uploads')->put( $random . '' . $random2 . '.pdf', $pdf->output());
+
+            $pdf->download('pdf.reports-payment-summary');
+
+            return $prescription;
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printPaymentHistory(array $data)
+    {
+        try {
+            $items = resolve('PatientSchedule')->index($data);
+            
+            $items = $items->get();
+
+            $datas = TransformerHelper::collection($items, new PatientScheduleTransformer, $data);
+            
+            $pdf = PDF::loadView('pdf.reports-payment-history', compact('datas'));
+
+            $random = rand();
+            $random2 = rand();
+
+            $url = url('/') . '/uploads/' . $random . '' . $random2 . '.pdf';
+
+            $prescription['url'] = $url;
+
+            Storage::disk('public_uploads')->put( $random . '' . $random2 . '.pdf', $pdf->output());
+
+            $pdf->download('pdf.reports-payment-history');
+
+            return $prescription;
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function printScheduleHistory(array $data)
     {
         try {

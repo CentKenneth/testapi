@@ -94,6 +94,22 @@ class PatientController extends Controller
         }
     }
 
+    public function printPaymentSummary(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printPaymentSummary($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    public function printPaymentHistory(PrintPatientSchedule $request) {
+        try {
+            return resolve('PatientServices')->printPaymentHistory($request->toArray());
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public function printSchedule(PrintPatientSchedule $request) {
         try {
             return resolve('PatientServices')->printSchedule($request->toArray());
