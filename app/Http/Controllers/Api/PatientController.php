@@ -12,7 +12,7 @@ use App\Http\Requests\Patient\PatientChat;
 use App\Http\Requests\Patient\CreatePatientChat;
 use App\Http\Requests\Patient\CreatePrescription;
 use App\Http\Requests\Patient\PatientChatNotifications;
-use App\Http\Requests\Patient\getPrescription;
+use App\Http\Requests\Patient\GetPrescription;
 
 
 class PatientController extends Controller
@@ -253,7 +253,7 @@ class PatientController extends Controller
         }
     }
 
-    public function getPrescription(getPrescription $request) {
+    public function getPrescription(GetPrescription $request) {
         try {
             $data = collect($request->validated())
                 ->toArray();
@@ -264,7 +264,7 @@ class PatientController extends Controller
         }
     }
 
-    public function getPrescriptionByDoctor(getPrescription $request) {
+    public function getPrescriptionByDoctor(GetPrescription $request) {
         try {
             $data = collect($request->validated())
                 ->toArray();
