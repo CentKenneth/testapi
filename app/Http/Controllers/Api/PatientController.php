@@ -36,7 +36,7 @@ class PatientController extends Controller
             ->except('images')
             ->toArray();
 
-            return resolve('PatientServices')->store($data, $request->file('images'));
+            return resolve('PatientServices')->store($data, $request->file('images') ? $request->file('images') : []);
         } catch (Exception $exception) {
             throw $exception;
         }
